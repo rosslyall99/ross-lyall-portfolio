@@ -1,0 +1,63 @@
+---
+const { project } = Astro.props;
+
+const hasLinks =
+  project.links?.project || project.links?.caseStudy || project.links?.github;
+---
+
+<article
+  class={`project-card project-card--${project.theme} ${
+    project.highlight ? "project-card--featured" : ""
+  }`}
+>
+  <div class="project-visual" aria-hidden="true">
+    <span class="project-visual__orb"></span>
+    <span class="project-visual__line"></span>
+    <span class="project-visual__line project-visual__line--short"></span>
+  </div>
+
+  <div class="project-card__body">
+    <div class="project-card__top">
+      <span class="project-category">{project.category}</span>
+      <span class="project-status">{project.status}</span>
+    </div>
+
+    <h3>{project.title}</h3>
+    <p class="project-type">{project.type}</p>
+    <p class="project-description">{project.description}</p>
+
+    <div
+      class="tech-list"
+      aria-label={`Technologies used for ${project.title}`}
+    >
+      {project.tech.map((item: string) => <span>{item}</span>)}
+    </div>
+
+    {
+      hasLinks && (
+        <div class="project-actions">
+          {project.links?.caseStudy && (
+            <a
+              href={project.links.caseStudy}
+              class="project-link project-link--primary"
+            >
+              Read case study
+            </a>
+          )}
+
+          {project.links?.project && (
+            <a href={project.links.project} class="project-link">
+              View live project
+            </a>
+          )}
+
+          {project.links?.github && (
+            <a href={project.links.github} class="project-link">
+              GitHub
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>

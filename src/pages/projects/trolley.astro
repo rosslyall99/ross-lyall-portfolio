@@ -1,0 +1,253 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Trolley Case Study | Ross Lyall Portfolio"
+  description="Case study for Trolley, a private household grocery planning app."
+>
+  <div class="page-shell">
+    <Header />
+
+    <main>
+      <section class="case-hero case-hero--trolley">
+        <a class="back-link" href="/">← Back to portfolio</a>
+
+        <p class="eyebrow">Case Study / Home App</p>
+        <h1>Trolley</h1>
+        <p class="case-hero__lead">
+          A private household grocery planning app that turns weekly meals into
+          a structured shopping list, helping make food planning, shopping and
+          household extras easier to manage.
+        </p>
+
+        <div class="case-meta">
+          <span>React</span>
+          <span>Supabase</span>
+          <span>Vercel</span>
+          <span>PWA</span>
+          <span>Private household app</span>
+        </div>
+      </section>
+
+      <section class="case-section case-showcase">
+        <div class="mock-browser">
+          <div class="mock-browser__bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="mock-screen" style="background: var(--trolley);">
+            <span class="mock-screen__label">Trolley dashboard</span>
+            <h2 class="mock-screen__heading">
+              Meals become a shopping workflow.
+            </h2>
+
+            <div class="mock-ui-grid">
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card mock-ui-card--wide"></div>
+              <div class="mock-ui-card"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mock-phone">
+          <div class="mock-phone__screen">
+            <div class="mock-phone__pill"></div>
+            <div class="mock-phone__button">Plan meals</div>
+            <div class="mock-phone__button">Review list</div>
+            <div class="mock-phone__button">Start shopping</div>
+            <div class="mock-phone__button">Add extras</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>
+            Weekly shopping was too dependent on memory, messages and guesswork.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Trolley was built around a real household problem: planning meals,
+            remembering what was needed, adding extra items during the week and
+            then turning all of that into a usable shopping list.
+          </p>
+
+          <p>
+            A normal notes app or shared list can work for simple shopping, but
+            it does not understand meals, portions, regular items, household
+            members, review stages or the difference between planning and
+            actually walking round a shop.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The solution</p>
+          <h2>
+            A meal-driven planner that creates a proper shopping workflow.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The app lets meals be planned across the week, then generates a
+            shopping list from the products attached to those meals. Items can
+            be reviewed, adjusted, moved, skipped or marked as bought.
+          </p>
+
+          <p>
+            It is designed as a practical family tool rather than a generic demo
+            app: it includes household members, extras, shopping mode, custom
+            items and phone install support.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key features</p>
+          <h2>What Trolley does</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>01</span>
+            <h3>Meal planning</h3>
+            <p>
+              Plan meals by day, slot and household member, with support for
+              shared dinners and different meals where needed.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>02</span>
+            <h3>Generated shopping lists</h3>
+            <p>
+              Turn a selected planning period into a structured list based on
+              meal ingredients and saved product data.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>03</span>
+            <h3>Review mode</h3>
+            <p>
+              Check and adjust the generated list before shopping, including
+              quantities, products and custom extras.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>04</span>
+            <h3>Shopping mode</h3>
+            <p>
+              Mark items as bought, skipped or unavailable, with category-based
+              sections and shop-friendly controls.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>05</span>
+            <h3>Extras</h3>
+            <p>
+              Add one-off household items during the week so they are pulled
+              into the next generated shopping list.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>06</span>
+            <h3>Phone install</h3>
+            <p>
+              Built as a PWA so it can be installed on phones and used like a
+              lightweight private household app.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">Design thinking</p>
+          <h2>The app follows the way shopping actually happens.</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The workflow is split into stages because planning, reviewing and
+            shopping are different jobs. A meal planner needs more detail, while
+            shopping mode needs simple, fast actions that work well on a phone.
+          </p>
+
+          <p>
+            The design also avoids making every item equal. Products have
+            categories, preferred shopping locations, notes and future support
+            for portion-to-purchase conversion.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I learned</p>
+          <h2>Useful lessons from building it</h2>
+        </div>
+
+        <div class="lesson-list">
+          <article>
+            <h3>Data structure matters early</h3>
+            <p>
+              The app became much more powerful once products, meals, list
+              items, extras and household members were treated as separate parts
+              of the system.
+            </p>
+          </article>
+
+          <article>
+            <h3>Mobile workflows need fewer decisions</h3>
+            <p>
+              Shopping mode needed to be simpler and more direct than the
+              desktop planning screens.
+            </p>
+          </article>
+
+          <article>
+            <h3>Real users reveal the awkward bits</h3>
+            <p>
+              The app improved most when it was tested against actual household
+              behaviour rather than an ideal version of how planning should
+              work.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-next">
+        <div>
+          <p class="eyebrow">Future improvements</p>
+          <h2>Where Trolley could go next</h2>
+        </div>
+
+        <ul>
+          <li>Inventory tracking for household staples and cat food.</li>
+          <li>Smarter portion-to-purchase conversion.</li>
+          <li>Reorder reminders for online and bulk purchases.</li>
+          <li>Better long-term analysis of buying patterns.</li>
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

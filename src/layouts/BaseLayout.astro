@@ -1,0 +1,21 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Ross Lyall | Portfolio",
+  description = "Practical websites, home apps and embedded tools built to solve real problems.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

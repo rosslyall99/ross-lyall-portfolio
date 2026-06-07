@@ -1,11 +1,203 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import { projects } from "../data/projects.js";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredProjects = projects.filter((project) => project.highlight);
+const homeApps = projects.filter((project) => project.category === "Home Apps");
+const websites = projects.filter((project) => project.category === "Websites");
+const embeddedTools = projects.filter(
+  (project) => project.category === "Embedded Website Tools"
+);
+const prototypes = projects.filter((project) => project.category === "Prototype");
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <div class="page-shell">
+    <Header />
+
+    <main>
+      <section class="hero">
+        <div class="hero__content">
+          <p class="eyebrow">Portfolio / Practical Projects / Real Problems</p>
+          <h1>Useful websites and private apps built around real life.</h1>
+          <p class="hero__lead">
+            A growing portfolio of practical projects — from household planning
+            and glucose logging to football archives and embedded retail website
+            tools.
+          </p>
+
+          <div class="hero__actions">
+            <a class="button button--primary" href="#projects">View projects</a>
+            <a class="button button--secondary" href="#about">About me</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Portfolio summary">
+          <div>
+            <span class="hero-panel__number">04</span>
+            <span class="hero-panel__label">strong portfolio pieces ready now</span>
+          </div>
+          <div>
+            <span class="hero-panel__number">02</span>
+            <span class="hero-panel__label">home apps solving family problems</span>
+          </div>
+          <div>
+            <span class="hero-panel__number">01</span>
+            <span class="hero-panel__label">community database prototype next</span>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>I build practical tools that make awkward jobs easier.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              I’m Ross Lyall, a general manager who has gradually moved from
+              fixing day-to-day process problems into designing and building
+              proper web apps, internal tools and useful websites.
+            </p>
+
+            <p>
+              Most of my projects start with a real problem: planning meals,
+              tracking glucose patterns, organising retail workflows, improving
+              customer journeys, or turning messy information into something
+              easier to use.
+            </p>
+
+            <p>
+              I like building things that are clear, useful and grounded in how
+              people actually work — not just polished demos that look good but
+              never get used.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>What I focus on</h3>
+            <ul>
+              <li>Private household apps</li>
+              <li>Small business workflow tools</li>
+              <li>Static websites and archives</li>
+              <li>Supabase-backed dashboards</li>
+              <li>Embedded tools for existing websites</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section build-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I build</p>
+          <h2>Real-world tools, not imaginary apps.</h2>
+          <p>
+            The strongest projects here come from actual needs — shopping,
+            health logging, football archiving, retail customer journeys and
+            admin systems.
+          </p>
+        </div>
+
+        <div class="build-grid">
+          <article class="build-card">
+            <span>01</span>
+            <h3>Home apps</h3>
+            <p>
+              Private tools for family life, planning, reminders, logging and
+              household organisation.
+            </p>
+          </article>
+
+          <article class="build-card">
+            <span>02</span>
+            <h3>Workflow tools</h3>
+            <p>
+              Apps that reduce repeated admin, guide decisions and make staff
+              processes easier to follow.
+            </p>
+          </article>
+
+          <article class="build-card">
+            <span>03</span>
+            <h3>Content websites</h3>
+            <p>
+              Fast, structured sites for archives, portfolios, storytelling and
+              clear public information.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Featured work</p>
+          <h2>The strongest projects so far</h2>
+          <p>
+            These are the projects that best show the mix of design, data,
+            workflow thinking and real-world usefulness.
+          </p>
+        </div>
+
+        <ProjectGrid projects={featuredProjects} />
+      </section>
+
+      <section id="apps" class="section section--split">
+        <div class="section-heading">
+          <p class="eyebrow">Home apps</p>
+          <h2>Private tools for everyday life</h2>
+          <p>
+            Apps designed around actual household needs, not demo ideas.
+          </p>
+        </div>
+
+        <ProjectGrid projects={homeApps} />
+      </section>
+
+      <section id="websites" class="section section--split">
+        <div class="section-heading">
+          <p class="eyebrow">Websites</p>
+          <h2>Content-led sites and portfolios</h2>
+          <p>
+            Static sites with structure, storytelling and clean project data.
+          </p>
+        </div>
+
+        <ProjectGrid projects={websites} />
+      </section>
+
+      <section id="extras" class="section section--split">
+        <div class="section-heading">
+          <p class="eyebrow">Embedded tools</p>
+          <h2>Useful extras added to existing sites</h2>
+          <p>
+            Practical tools for improving customer journeys without rebuilding
+            the whole website from scratch.
+          </p>
+        </div>
+
+        <ProjectGrid projects={embeddedTools} />
+      </section>
+
+      <section id="next" class="section section--split next-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Next build</p>
+          <h2>Church database prototype</h2>
+          <p>
+            The next serious project is a simple, trustworthy church admin system
+            for people, households, groups, reminders and pastoral notes. The aim
+            is to show how much easier and safer the current process could be.
+          </p>
+        </div>
+
+        <ProjectGrid projects={prototypes} />
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,303 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Glorious Hearts Case Study | Ross Lyall Portfolio"
+  description="Case study for Glorious Hearts, an Astro football archive website."
+>
+  <div class="page-shell">
+    <Header />
+
+    <main>
+      <section class="case-hero case-hero--hearts">
+        <a class="back-link" href="/">← Back to portfolio</a>
+
+        <p class="eyebrow">Case Study / Website / Football Archive</p>
+        <h1>Glorious Hearts</h1>
+        <p class="case-hero__lead">
+          A structured Hearts season archive built with Astro, bringing together
+          fixtures, match pages, player profiles, galleries and supporter
+          storytelling.
+        </p>
+
+        <div class="case-meta">
+          <span>Astro</span>
+          <span>Static Data</span>
+          <span>Vercel</span>
+          <span>Responsive Design</span>
+          <span>Football Archive</span>
+        </div>
+      </section>
+
+      <section class="case-section case-showcase">
+        <div class="mock-browser">
+          <div class="mock-browser__bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="mock-screen" style="background: var(--hearts);">
+            <span class="mock-screen__label">Season archive</span>
+            <h2 class="mock-screen__heading">
+              Matches, players, galleries and memories.
+            </h2>
+
+            <div class="mock-ui-grid">
+              <div class="mock-ui-card mock-ui-card--wide"></div>
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card"></div>
+              <div class="mock-ui-card"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mock-phone">
+          <div class="mock-phone__screen">
+            <div class="mock-phone__pill"></div>
+            <div class="mock-phone__button">Match archive</div>
+            <div class="mock-phone__button">Player profiles</div>
+            <div class="mock-phone__button">Gallery</div>
+            <div class="mock-phone__button">My story</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>
+            A football season has loads of detail, but it is easy for it to
+            become scattered.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Glorious Hearts was built as a personal archive for a Hearts season,
+            bringing matches, scorers, player information, images and supporter
+            memories into one structured website.
+          </p>
+
+          <p>
+            Instead of treating the season as a simple list of fixtures, the aim
+            was to make it feel like a living archive: part record, part
+            gallery, part story of following the club.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The solution</p>
+          <h2>A fast static site powered by structured football data.</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The site uses Astro to generate a fast, content-led archive. Match
+            and player information is held as structured data, making it easier
+            to build repeatable pages without manually designing every match
+            from scratch.
+          </p>
+
+          <p>
+            This makes the project easier to maintain over a season: new matches
+            can be added to the data, and the site can display them consistently
+            across the homepage, archive lists, match pages and player sections.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key features</p>
+          <h2>What Glorious Hearts includes</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>01</span>
+            <h3>Match archive</h3>
+            <p>
+              Fixtures and results are organised into a season archive, making
+              it easy to browse matches by date and competition.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>02</span>
+            <h3>Match pages</h3>
+            <p>
+              Individual match pages can show key details such as scoreline,
+              scorers, penalties, images and match-specific notes.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>03</span>
+            <h3>Player profiles</h3>
+            <p>
+              Player pages help turn the site from a fixture list into a fuller
+              season archive with squad information and season context.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>04</span>
+            <h3>Image galleries</h3>
+            <p>
+              Match images and gallery sections give the archive a stronger
+              visual identity and make it feel more personal.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>05</span>
+            <h3>Supporter story</h3>
+            <p>
+              Personal writing and memory sections add context beyond the data,
+              connecting the project to the experience of following Hearts.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>06</span>
+            <h3>Responsive layout</h3>
+            <p>
+              The site is designed to work cleanly on desktop and mobile, with
+              match and player content still easy to read on smaller screens.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">Design thinking</p>
+          <h2>
+            The site needed to feel like a football archive, not just a blog.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The design focuses on structure and repeatability. A football season
+            naturally creates repeated content — matches, players, galleries and
+            stats — so the site was built around reusable layouts and central
+            data.
+          </p>
+
+          <p>
+            The goal was to make the archive easy to update while still feeling
+            emotional and personal. Data gives the site structure; memories and
+            images give it character.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Build approach</p>
+          <h2>How the site is organised</h2>
+        </div>
+
+        <div class="flow-grid flow-grid--four">
+          <article class="flow-card">
+            <span>01</span>
+            <h3>Central data</h3>
+            <p>
+              Match and player information is stored in structured data files so
+              it can be reused across multiple parts of the site.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>02</span>
+            <h3>Reusable layouts</h3>
+            <p>
+              Components and page templates keep the design consistent across
+              match pages, player pages and archive sections.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>03</span>
+            <h3>Static output</h3>
+            <p>
+              Astro generates a fast static website, making it simple to deploy,
+              browse and maintain.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>04</span>
+            <h3>Season updates</h3>
+            <p>
+              The archive can grow throughout the season by adding new match
+              data, images and page content.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I learned</p>
+          <h2>Useful lessons from building it</h2>
+        </div>
+
+        <div class="lesson-list">
+          <article>
+            <h3>Structured data makes content sites much easier to maintain</h3>
+            <p>
+              Once match and player details were centralised, it became easier
+              to display the same information consistently across the whole
+              site.
+            </p>
+          </article>
+
+          <article>
+            <h3>
+              Personal projects still need proper information architecture
+            </h3>
+            <p>
+              Even though the subject was personal, the site worked best when it
+              was treated like a real archive with clear sections and repeatable
+              patterns.
+            </p>
+          </article>
+
+          <article>
+            <h3>Static sites are ideal for archives</h3>
+            <p>
+              Astro was a strong fit because the site needed to be fast,
+              reliable and content-focused without requiring a complex backend.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-next">
+        <div>
+          <p class="eyebrow">Future improvements</p>
+          <h2>Where Glorious Hearts could go next</h2>
+        </div>
+
+        <ul>
+          <li>Add richer season statistics and player appearance summaries.</li>
+          <li>Expand match galleries and supporter memory sections.</li>
+          <li>Add more filtering for competitions, scorers and match types.</li>
+          <li>Improve long-term archive navigation across multiple seasons.</li>
+          <li>Add more automated references or source links for match data.</li>
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,310 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Range Case Study | Ross Lyall Portfolio"
+  description="Case study for Range, a personal glucose and event logging app."
+>
+  <div class="page-shell">
+    <Header />
+
+    <main>
+      <section class="case-hero case-hero--range">
+        <a class="back-link" href="/">← Back to portfolio</a>
+
+        <p class="eyebrow">Case Study / Home App / Personal Data</p>
+        <h1>Range</h1>
+        <p class="case-hero__lead">
+          A personal glucose and event logging dashboard built to make readings,
+          food, insulin and daily patterns easier to record, view and export.
+        </p>
+
+        <div class="case-meta">
+          <span>React</span>
+          <span>Supabase</span>
+          <span>MacroDroid</span>
+          <span>Edge Functions</span>
+          <span>Personal pattern spotting</span>
+        </div>
+      </section>
+
+      <section class="case-section case-showcase">
+        <div class="mock-browser">
+          <div class="mock-browser__bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="mock-screen" style="background: var(--range);">
+            <span class="mock-screen__label">Range chart</span>
+            <h2 class="mock-screen__heading">
+              Readings, events and useful exports.
+            </h2>
+
+            <div class="mock-chart"></div>
+          </div>
+        </div>
+
+        <div class="mock-phone">
+          <div class="mock-phone__screen">
+            <div class="mock-phone__pill"></div>
+            <div class="mock-phone__button">Record carbs</div>
+            <div class="mock-phone__button">Fast acting</div>
+            <div class="mock-phone__button">Background</div>
+            <div class="mock-phone__button">Add note</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>
+            Glucose data existed, but it was hard to connect it with real-life
+            events.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Range was built around a personal need: glucose readings were
+            available, but it was difficult to view them alongside the things
+            that explain them — meals, fast acting insulin, background insulin,
+            notes and eventually exercise.
+          </p>
+
+          <p>
+            The goal was not to create a medical dosing tool. The aim was to
+            build a private logging app for spotting patterns, exporting useful
+            data and making it easier to discuss trends with health
+            professionals.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The solution</p>
+          <h2>A simple dashboard for readings, events and useful exports.</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Range collects glucose readings into Supabase, displays them on a
+            clean chart and lets manual events be recorded separately. Carbs,
+            fast acting insulin, background insulin and notes are treated as
+            individual events rather than being bundled together.
+          </p>
+
+          <p>
+            The app also includes a data page where a selected period can be
+            exported as CSV or copied into a structured prompt for analysis and
+            pattern discussion.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Data flow</p>
+          <h2>How the readings get into the app</h2>
+          <p>
+            The first working version uses a practical automation flow to move
+            glucose readings from the phone into the database.
+          </p>
+        </div>
+
+        <div class="flow-grid">
+          <article class="flow-card">
+            <span>01</span>
+            <h3>Libre sensor</h3>
+            <p>
+              Glucose readings are captured from the sensor and made available
+              through the phone setup.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>02</span>
+            <h3>GlucoDataHandler</h3>
+            <p>
+              GlucoDataHandler provides the current glucose value that can then
+              be picked up by phone automation.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>03</span>
+            <h3>MacroDroid</h3>
+            <p>
+              MacroDroid watches for new readings and sends them to the app
+              using an HTTP request.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>04</span>
+            <h3>Supabase</h3>
+            <p>
+              A Supabase Edge Function receives the reading securely and stores
+              it in the database.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>05</span>
+            <h3>React dashboard</h3>
+            <p>
+              The dashboard reads the stored data and presents it as a simple
+              chart, event log and exportable dataset.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key features</p>
+          <h2>What Range does</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>01</span>
+            <h3>Live glucose chart</h3>
+            <p>
+              Shows glucose readings as a simple line graph with selectable
+              periods such as today, the last hour and the last three hours.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>02</span>
+            <h3>Manual event logging</h3>
+            <p>
+              Allows carbs, fast acting insulin, background insulin and notes to
+              be recorded as separate phone-friendly events.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>03</span>
+            <h3>Event markers</h3>
+            <p>
+              Shows events against the glucose chart without plotting them as
+              glucose values, keeping the chart clean and readable.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>04</span>
+            <h3>Data export</h3>
+            <p>
+              Exports readings and events for a selected period as CSV, making
+              the data easier to keep, share or review.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>05</span>
+            <h3>AI prompt support</h3>
+            <p>
+              Creates a structured prompt from selected data so patterns can be
+              explored as discussion points, not medical instructions.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>06</span>
+            <h3>Mobile-first recording</h3>
+            <p>
+              Keeps event recording simple with large buttons and one event
+              recorded at a time.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">Design thinking</p>
+          <h2>
+            The chart stays focused on glucose, while events explain the
+            context.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            One of the most important design decisions was to avoid plotting
+            carbs or insulin as if they were glucose values. Instead, the chart
+            remains a glucose line, with events shown as markers at the time
+            they happened.
+          </p>
+
+          <p>
+            This keeps the main graph understandable while still making it easy
+            to see how food, insulin and notes line up with changes in readings.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I learned</p>
+          <h2>Useful lessons from building it</h2>
+        </div>
+
+        <div class="lesson-list">
+          <article>
+            <h3>Health data needs careful wording</h3>
+            <p>
+              The app is deliberately framed around logging, exporting and
+              spotting patterns rather than giving medical or dosing advice.
+            </p>
+          </article>
+
+          <article>
+            <h3>Automation can make a small app much more powerful</h3>
+            <p>
+              Using MacroDroid and Supabase turned the project from a manual
+              logbook into a live personal dashboard.
+            </p>
+          </article>
+
+          <article>
+            <h3>Simple charts are often better</h3>
+            <p>
+              The most useful version was not the busiest one. A clean glucose
+              line plus well-designed event markers made the data easier to
+              understand.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-next">
+        <div>
+          <p class="eyebrow">Future improvements</p>
+          <h2>Where Range could go next</h2>
+        </div>
+
+        <ul>
+          <li>Add walking and exercise periods to the chart.</li>
+          <li>Improve long-term pattern summaries.</li>
+          <li>Add more useful clinician-friendly exports.</li>
+          <li>Refine the mobile installed-app experience.</li>
+          <li>
+            Build safer insight prompts focused on discussion, not decisions.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
