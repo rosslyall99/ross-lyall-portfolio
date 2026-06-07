@@ -28,39 +28,154 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </section>
 
-      <section class="case-section case-showcase">
-        <div class="mock-browser">
-          <div class="mock-browser__bar">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <div class="mock-screen" style="background: var(--trolley);">
-            <span class="mock-screen__label">Trolley dashboard</span>
-            <h2 class="mock-screen__heading">
-              Meals become a shopping workflow.
-            </h2>
-
-            <div class="mock-ui-grid">
-              <div class="mock-ui-card"></div>
-              <div class="mock-ui-card"></div>
-              <div class="mock-ui-card"></div>
-              <div class="mock-ui-card mock-ui-card--wide"></div>
-              <div class="mock-ui-card"></div>
-            </div>
-          </div>
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Screenshots</p>
+          <h2>Meal planning, list review and shopping mode in one flow</h2>
+          <p>
+            Trolley turns planned meals into a practical shopping list, then
+            supports reviewing, adding extras and shopping from a phone-friendly
+            interface.
+          </p>
         </div>
 
-        <div class="mock-phone">
-          <div class="mock-phone__screen">
-            <div class="mock-phone__pill"></div>
-            <div class="mock-phone__button">Plan meals</div>
-            <div class="mock-phone__button">Review list</div>
-            <div class="mock-phone__button">Start shopping</div>
-            <div class="mock-phone__button">Add extras</div>
-          </div>
+        <div class="app-gallery app-gallery--trolley">
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/list.png"
+            data-lightbox-alt="Trolley dashboard screenshot"
+          >
+            <img
+              src="/images/projects/trolley/list.png"
+              alt="Trolley dashboard screenshot"
+              loading="lazy"
+            />
+            <span>Shopping List</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/planner.png"
+            data-lightbox-alt="Trolley meal planner screenshot"
+          >
+            <img
+              src="/images/projects/trolley/planner.png"
+              alt="Trolley meal planner screenshot"
+              loading="lazy"
+            />
+            <span>Planner</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/products.png"
+            data-lightbox-alt="Trolley shopping list review screenshot"
+          >
+            <img
+              src="/images/projects/trolley/products.png"
+              alt="Trolley shopping list review screenshot"
+              loading="lazy"
+            />
+            <span>Products</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/shoppingMode.png"
+            data-lightbox-alt="Trolley shopping mode screenshot"
+          >
+            <img
+              src="/images/projects/trolley/shoppingMode.png"
+              alt="Trolley shopping mode screenshot"
+              loading="lazy"
+            />
+            <span>Shopping Mode</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/settings.png"
+            data-lightbox-alt="Trolley extras screenshot"
+          >
+            <img
+              src="/images/projects/trolley/settings.png"
+              alt="Trolley extras screenshot"
+              loading="lazy"
+            />
+            <span>Settings</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/trolley/settings2.png"
+            data-lightbox-alt="Trolley extras screenshot"
+          >
+            <img
+              src="/images/projects/trolley/settings2.png"
+              alt="Trolley extras screenshot"
+              loading="lazy"
+            />
+            <span>Settings</span>
+          </button>
         </div>
+
+        <dialog class="image-lightbox" id="trolley-lightbox">
+          <button
+            class="image-lightbox__close"
+            type="button"
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img src="" alt="" />
+        </dialog>
+
+        <script>
+          const lightbox = document.querySelector(
+            "#trolley-lightbox",
+          ) as HTMLDialogElement | null;
+
+          const lightboxImage = lightbox?.querySelector(
+            "img",
+          ) as HTMLImageElement | null;
+
+          const closeButton = lightbox?.querySelector(
+            ".image-lightbox__close",
+          ) as HTMLButtonElement | null;
+
+          const triggers = document.querySelectorAll<HTMLElement>(
+            "[data-lightbox-src]",
+          );
+
+          triggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+              const src = trigger.dataset.lightboxSrc;
+              const alt = trigger.dataset.lightboxAlt || "";
+
+              if (!lightbox || !lightboxImage || !src) return;
+
+              lightboxImage.src = src;
+              lightboxImage.alt = alt;
+              lightbox.showModal();
+            });
+          });
+
+          closeButton?.addEventListener("click", () => {
+            lightbox?.close();
+          });
+
+          lightbox?.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+              lightbox.close();
+            }
+          });
+        </script>
       </section>
 
       <section class="case-section case-overview">

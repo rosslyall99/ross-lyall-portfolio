@@ -1147,20 +1147,21 @@ h3 {
 }
 
 /* ================================
-   Range screenshot gallery
+   App screenshot galleries
 ================================ */
 
-.range-gallery {
+.app-gallery {
   display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 
-.range-gallery button {
+.app-gallery button {
   font: inherit;
 }
 
-.range-gallery__feature,
-.range-gallery__phone {
+.app-gallery__item {
   position: relative;
   display: block;
   width: 100%;
@@ -1177,14 +1178,12 @@ h3 {
     border-color 150ms ease;
 }
 
-.range-gallery__feature:hover,
-.range-gallery__phone:hover {
+.app-gallery__item:hover {
   transform: translateY(-2px);
   box-shadow: none;
 }
 
-.range-gallery__feature img,
-.range-gallery__phone img {
+.app-gallery__item img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1192,40 +1191,53 @@ h3 {
   object-position: top center;
 }
 
-.range-gallery {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: stretch;
-}
-
-.range-gallery__feature {
-  max-width: none;
-  margin: 0;
-}
-
-.range-gallery__phones {
-  display: contents;
-}
-
-.range-gallery__phone {
-  border-radius: var(--radius-md);
-}
-
-.range-gallery__feature span,
-.range-gallery__phone span {
+.app-gallery__item span {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
-  display: inline-flex;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  display: flex;
   align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
   border: 2px solid var(--line);
-  border-radius: 999px;
+  border-radius: calc(var(--radius-md) - 8px);
   color: #ffffff;
   background: var(--accent);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 950;
+  text-align: center;
   box-shadow: none;
+}
+
+.app-gallery--trolley {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.app-gallery--trolley .app-gallery__item {
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.app-gallery--trolley .app-gallery__item img {
+  opacity: 0.72;
+  filter: saturate(0.85);
+  transition:
+    opacity 150ms ease,
+    filter 150ms ease;
+}
+
+.app-gallery--trolley .app-gallery__item:hover img,
+.app-gallery--trolley .app-gallery__item:focus-visible img {
+  opacity: 1;
+  filter: saturate(1);
+}
+
+.app-gallery--trolley .app-gallery__item span {
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: 0.82rem;
 }
 
 .image-lightbox {
@@ -1276,24 +1288,36 @@ h3 {
 }
 
 @media (max-width: 900px) {
-  .range-gallery {
+  .app-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .range-gallery__feature,
-  .range-gallery__phone {
+  .app-gallery__item {
     height: 260px;
+  }
+
+  .app-gallery--trolley .app-gallery__item {
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }
 
 @media (max-width: 560px) {
-  .range-gallery {
+  .app-gallery {
     grid-template-columns: 1fr;
   }
 
-  .range-gallery__feature,
-  .range-gallery__phone {
+  .app-gallery__item {
     height: 320px;
+  }
+
+  .app-gallery.app-gallery--trolley {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-gallery--trolley .app-gallery__item {
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 
   .image-lightbox {
@@ -1544,7 +1568,7 @@ h3 {
 .contact-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 22px;
   padding: 26px;
   border: 2px solid var(--line);
@@ -1557,4 +1581,32 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-weight: 700;
+}
+
+/* Mobile contact correction */
+
+@media (max-width: 560px) {
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-section__content {
+    max-width: none;
+  }
+
+  .contact-section__content p:not(.eyebrow) {
+    font-size: 1rem;
+  }
+
+  .contact-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .contact-card .button {
+    width: 100%;
+    margin-top: 8px;
+  }
 }
