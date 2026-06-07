@@ -1,10 +1,15 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 const {
-  title = "Ross Lyall | Portfolio",
-  description = "Practical websites, home apps and embedded tools built to solve real problems.",
+  title = "Ross Lyall Portfolio",
+  description = "A portfolio of practical web apps, tools and websites built by Ross Lyall using Astro, React, Supabase and Vercel.",
 } = Astro.props;
+
+const pageTitle =
+  title === "Ross Lyall Portfolio" ? title : `${title} | Ross Lyall Portfolio`;
 ---
 
 <!doctype html>
@@ -13,9 +18,30 @@ const {
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+
+    <title>{pageTitle}</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="author" content="Ross Lyall" />
+    <meta name="theme-color" content="#f6efe4" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
   </head>
+
   <body>
-    <slot />
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>
