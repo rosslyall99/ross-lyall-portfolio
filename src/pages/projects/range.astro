@@ -27,33 +27,142 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
       </section>
 
-      <section class="case-section case-showcase">
-        <div class="mock-browser">
-          <div class="mock-browser__bar">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Screenshots</p>
+          <h2>Mobile-first logging, with a wider chart view when needed</h2>
+          <p>
+            Range is designed mainly for quick phone use: recording carbs,
+            insulin or notes in a few taps. The desktop view gives more room for
+            reviewing the glucose chart and spotting patterns.
+          </p>
+        </div>
 
-          <div class="mock-screen" style="background: var(--range);">
-            <span class="mock-screen__label">Range chart</span>
-            <h2 class="mock-screen__heading">
-              Readings, events and useful exports.
-            </h2>
+        <div class="range-gallery">
+          <button
+            class="range-gallery__feature"
+            type="button"
+            data-lightbox-src="/images/projects/range/image5.png"
+            data-lightbox-alt="Range desktop glucose chart view"
+          >
+            <img
+              src="/images/projects/range/image5.png"
+              alt="Range desktop glucose chart view"
+              loading="lazy"
+            />
+            <span>Desktop chart view</span>
+          </button>
 
-            <div class="mock-chart"></div>
+          <div class="range-gallery__phones">
+            <button
+              class="range-gallery__phone"
+              type="button"
+              data-lightbox-src="/images/projects/range/image1.png"
+              data-lightbox-alt="Range mobile quick event recording screen"
+            >
+              <img
+                src="/images/projects/range/image1.png"
+                alt="Range mobile quick event recording screen"
+                loading="lazy"
+              />
+              <span>Record</span>
+            </button>
+
+            <button
+              class="range-gallery__phone"
+              type="button"
+              data-lightbox-src="/images/projects/range/image2.png"
+              data-lightbox-alt="Range mobile glucose chart screen"
+            >
+              <img
+                src="/images/projects/range/image2.png"
+                alt="Range mobile glucose chart screen"
+                loading="lazy"
+              />
+              <span>Chart</span>
+            </button>
+
+            <button
+              class="range-gallery__phone"
+              type="button"
+              data-lightbox-src="/images/projects/range/image3.png"
+              data-lightbox-alt="Range mobile data and export screen"
+            >
+              <img
+                src="/images/projects/range/image3.png"
+                alt="Range mobile data and export screen"
+                loading="lazy"
+              />
+              <span>Data</span>
+            </button>
+
+            <button
+              class="range-gallery__phone"
+              type="button"
+              data-lightbox-src="/images/projects/range/image4.png"
+              data-lightbox-alt="Range mobile recorded event history screen"
+            >
+              <img
+                src="/images/projects/range/image4.png"
+                alt="Range mobile recorded event history screen"
+                loading="lazy"
+              />
+              <span>Events</span>
+            </button>
           </div>
         </div>
 
-        <div class="mock-phone">
-          <div class="mock-phone__screen">
-            <div class="mock-phone__pill"></div>
-            <div class="mock-phone__button">Record carbs</div>
-            <div class="mock-phone__button">Fast acting</div>
-            <div class="mock-phone__button">Background</div>
-            <div class="mock-phone__button">Add note</div>
-          </div>
-        </div>
+        <dialog class="image-lightbox" id="range-lightbox">
+          <button
+            class="image-lightbox__close"
+            type="button"
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img src="" alt="" />
+        </dialog>
+
+        <script>
+          const lightbox = document.querySelector(
+            "#range-lightbox",
+          ) as HTMLDialogElement | null;
+
+          const lightboxImage = lightbox?.querySelector(
+            "img",
+          ) as HTMLImageElement | null;
+
+          const closeButton = lightbox?.querySelector(
+            ".image-lightbox__close",
+          ) as HTMLButtonElement | null;
+
+          const triggers = document.querySelectorAll<HTMLElement>(
+            "[data-lightbox-src]",
+          );
+
+          triggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+              const src = trigger.dataset.lightboxSrc;
+              const alt = trigger.dataset.lightboxAlt || "";
+
+              if (!lightbox || !lightboxImage || !src) return;
+
+              lightboxImage.src = src;
+              lightboxImage.alt = alt;
+              lightbox.showModal();
+            });
+          });
+
+          closeButton?.addEventListener("click", () => {
+            lightbox?.close();
+          });
+
+          lightbox?.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+              lightbox.close();
+            }
+          });
+        </script>
       </section>
 
       <section class="case-section case-overview">
