@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
 ---
 
 <BaseLayout
@@ -9,8 +7,6 @@ import Footer from "../../components/Footer.astro";
   description="Case study for embedded website tools built for the Slanj website."
 >
   <div class="page-shell">
-    <Header />
-
     <main>
       <section class="case-hero case-hero--slanj">
         <a class="back-link" href="/">← Back to portfolio</a>
@@ -35,7 +31,10 @@ import Footer from "../../components/Footer.astro";
       <section class="case-section case-overview">
         <div>
           <p class="eyebrow">The problem</p>
-          <h2>Some customer journeys needed more guidance than normal website pages could give.</h2>
+          <h2>
+            Some customer journeys needed more guidance than normal website
+            pages could give.
+          </h2>
         </div>
 
         <div class="case-copy">
@@ -141,7 +140,10 @@ import Footer from "../../components/Footer.astro";
       <section class="case-section case-overview">
         <div>
           <p class="eyebrow">Design thinking</p>
-          <h2>The aim was to improve the journey without making the website feel complicated.</h2>
+          <h2>
+            The aim was to improve the journey without making the website feel
+            complicated.
+          </h2>
         </div>
 
         <div class="case-copy">
@@ -249,11 +251,11 @@ import Footer from "../../components/Footer.astro";
           <li>Improve staff handover information from customer flows.</li>
           <li>Connect enquiries more directly to internal systems.</li>
           <li>Add analytics to see where customers get stuck.</li>
-          <li>Turn more repeated staff questions into self-service journeys.</li>
+          <li>
+            Turn more repeated staff questions into self-service journeys.
+          </li>
         </ul>
       </section>
     </main>
-
-    <Footer />
   </div>
 </BaseLayout>
