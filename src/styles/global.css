@@ -890,6 +890,7 @@ h3 {
   .hero,
   .section--split,
   .next-panel,
+  .contact-section,
   .about-grid,
   .build-grid,
   .case-overview,
@@ -1284,4 +1285,43 @@ h3 {
   .mock-screen {
     min-height: 300px;
   }
+}
+
+/* Contact */
+
+.contact-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 24px;
+  align-items: stretch;
+  background: var(--panel);
+}
+
+.contact-section__content {
+  max-width: 720px;
+}
+
+.contact-section__content p:not(.eyebrow) {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 26px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--slanj);
+  box-shadow: var(--shadow-small);
+}
+
+.contact-card p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
 }
