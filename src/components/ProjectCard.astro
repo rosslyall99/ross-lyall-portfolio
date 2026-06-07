@@ -1,8 +1,19 @@
 ---
 const { project } = Astro.props;
 
+type LiveLink = {
+  label: string;
+  url: string;
+};
+
+const liveLinks: LiveLink[] = Array.isArray(project.links?.live)
+  ? project.links.live
+  : project.links?.live
+    ? [{ label: "Live site", url: project.links.live }]
+    : [];
+
 const hasLinks =
-  project.links?.project || project.links?.caseStudy || project.links?.github;
+  project.links?.caseStudy || liveLinks.length > 0 || project.links?.github;
 ---
 
 <article
@@ -38,21 +49,31 @@ const hasLinks =
         <div class="project-actions">
           {project.links?.caseStudy && (
             <a
-              href={project.links.caseStudy}
               class="project-link project-link--primary"
+              href={project.links.caseStudy}
             >
               Read case study
             </a>
           )}
 
-          {project.links?.project && (
-            <a href={project.links.project} class="project-link">
-              View live project
+          {liveLinks.map((link) => (
+            <a
+              class="project-link"
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {link.label}
             </a>
-          )}
+          ))}
 
           {project.links?.github && (
-            <a href={project.links.github} class="project-link">
+            <a
+              class="project-link"
+              href={project.links.github}
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub
             </a>
           )}

@@ -11,6 +11,7 @@ export const projects = [
     highlight: true,
     theme: "trolley",
     links: {
+      live: "https://shopping-list-kappa-five.vercel.app/",
       caseStudy: "/projects/trolley",
       github: "https://github.com/rosslyall99/shopping-list",
     },
@@ -27,6 +28,7 @@ export const projects = [
     highlight: true,
     theme: "range",
     links: {
+      live: "https://glucose-logger.vercel.app/",
       caseStudy: "/projects/range",
       github: "https://github.com/rosslyall99/glucose-logger",
     },
@@ -43,6 +45,7 @@ export const projects = [
     highlight: true,
     theme: "hearts",
     links: {
+      live: "https://glorious-hearts.vercel.app/",
       caseStudy: "/projects/glorious-hearts",
       github: "https://github.com/rosslyall99/glorious-hearts",
     },
@@ -59,6 +62,16 @@ export const projects = [
     highlight: true,
     theme: "slanj",
     links: {
+      live: [
+        {
+          label: "Appointment Wizard",
+          url: "https://slanjkilts.com/appointment-wizard",
+        },
+        {
+          label: "Tartan Search",
+          url: "https://slanjkilts.com/tartansearch",
+        },
+      ],
       caseStudy: "/projects/slanj-extras",
     },
   },
