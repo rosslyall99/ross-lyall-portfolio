@@ -13,7 +13,6 @@ export const projects = [
     links: {
       live: "https://shopping-list-kappa-five.vercel.app/",
       caseStudy: "/projects/trolley",
-      github: "https://github.com/rosslyall99/shopping-list",
     },
   },
   {
@@ -30,7 +29,6 @@ export const projects = [
     links: {
       live: "https://glucose-logger.vercel.app/",
       caseStudy: "/projects/range",
-      github: "https://github.com/rosslyall99/glucose-logger",
     },
   },
   {
@@ -47,7 +45,6 @@ export const projects = [
     links: {
       live: "https://glorious-hearts.vercel.app/",
       caseStudy: "/projects/glorious-hearts",
-      github: "https://github.com/rosslyall99/glorious-hearts",
     },
   },
   {
