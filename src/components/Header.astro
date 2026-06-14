@@ -21,7 +21,24 @@
   <nav class="site-nav" aria-label="Main navigation">
     <a href="/">Home</a>
     <a href="/#about">About</a>
-    <a href="/#projects">Projects</a>
+    <div class="nav-dropdown">
+      <button
+        class="nav-dropdown__trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="projects-submenu"
+      >
+        Projects
+      </button>
+
+      <div class="nav-dropdown__menu" id="projects-submenu">
+        <a href="/#featured-projects">Featured</a>
+        <a href="/#home-apps">Home Apps</a>
+        <a href="/#websites">Websites</a>
+        <a href="/#embedded-tools">Embedded Tools</a>
+        <a href="/#next-build">Next Build</a>
+      </div>
+    </div>
     <a href="/#contact">Contact</a>
   </nav>
 
@@ -29,6 +46,11 @@
     const header = document.querySelector(".site-header");
     const toggle = document.querySelector(".menu-toggle");
     const nav = document.querySelector(".site-nav");
+    const dropdown = document.querySelector(".nav-dropdown");
+    const dropdownTrigger = document.querySelector(
+      ".nav-dropdown__trigger",
+    ) as HTMLButtonElement | null;
+    const supportsHover = window.matchMedia("(hover: hover)").matches;
 
     toggle?.addEventListener("click", () => {
       const isOpen = header?.classList.toggle("site-header--open");
@@ -36,11 +58,63 @@
       toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
     });
 
+    dropdownTrigger?.addEventListener("click", () => {
+      if (supportsHover) return;
+
+      const isOpen = dropdown?.classList.toggle("nav-dropdown--open");
+      dropdownTrigger.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    });
+
+    if (supportsHover && dropdown && dropdownTrigger) {
+      dropdown.addEventListener("mouseenter", () => {
+        dropdown.classList.remove("nav-dropdown--suppressed");
+        dropdownTrigger.setAttribute("aria-expanded", "true");
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        dropdown.classList.remove("nav-dropdown--suppressed");
+        dropdownTrigger.setAttribute("aria-expanded", "false");
+      });
+
+      dropdown.addEventListener("focusin", () => {
+        dropdown.classList.remove("nav-dropdown--suppressed");
+        dropdownTrigger.setAttribute("aria-expanded", "true");
+      });
+
+      dropdown.addEventListener("focusout", (event) => {
+        const nextTarget = event.relatedTarget as Node | null;
+
+        if (nextTarget && dropdown.contains(nextTarget)) return;
+        dropdownTrigger.setAttribute("aria-expanded", "false");
+      });
+    }
+
     nav?.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         header?.classList.remove("site-header--open");
         toggle?.setAttribute("aria-expanded", "false");
+        dropdown?.classList.remove("nav-dropdown--open");
+        dropdown?.classList.add("nav-dropdown--suppressed");
+        dropdownTrigger?.setAttribute("aria-expanded", "false");
       });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+
+      if (!dropdown || !dropdownTrigger) return;
+      if (supportsHover) return;
+      if (dropdown.contains(target)) return;
+
+      dropdown.classList.remove("nav-dropdown--open");
+      dropdownTrigger.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !dropdown || !dropdownTrigger) return;
+
+      dropdown.classList.remove("nav-dropdown--open");
+      dropdownTrigger.setAttribute("aria-expanded", "false");
     });
   </script>
 </header>

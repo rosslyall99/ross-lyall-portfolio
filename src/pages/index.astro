@@ -3,7 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectGrid from "../components/ProjectGrid.astro";
 import { projects } from "../data/projects.js";
 
-const featuredProjects = projects.filter((project) => project.highlight);
+const isDefined = <T,>(value: T | undefined): value is T => value !== undefined;
+
+const featuredProjects = ["trolley", "range"]
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter(isDefined);
 const homeApps = projects.filter((project) => project.category === "Home Apps");
 const websites = projects.filter((project) => project.category === "Websites");
 const embeddedTools = projects.filter(
@@ -27,7 +31,9 @@ const prototypes = projects.filter(
         </p>
 
         <div class="hero__actions">
-          <a class="button button--primary" href="#projects">View projects</a>
+          <a class="button button--primary" href="#featured-projects"
+            >View projects</a
+          >
           <a class="button button--secondary" href="#about">About me</a>
         </div>
       </div>
@@ -63,9 +69,9 @@ const prototypes = projects.filter(
       <div class="about-grid">
         <div class="about-copy">
           <p>
-            I’m Ross Lyall, a general manager who has gradually moved from
-            fixing day-to-day process problems into designing and building
-            proper web apps, internal tools and useful websites.
+            I’m Ross Lyall, a manager of a Glasgow kilt shop who has gradually
+            moved from fixing day-to-day process problems into designing and
+            building proper web apps, internal tools and useful websites.
           </p>
 
           <p>
@@ -73,6 +79,14 @@ const prototypes = projects.filter(
             tracking glucose patterns, organising retail workflows, improving
             customer journeys, or turning messy information into something
             easier to use.
+          </p>
+
+          <p>
+            I use AI as part of how I build apps and websites, mainly for
+            coding, planning and working through problems. I do not use it for
+            image or video generation, and I try to use it as responsibly and
+            honestly as I can. If you are firmly against AI being used in this
+            kind of work, this probably is not the portfolio for you.
           </p>
 
           <p>
@@ -87,9 +101,10 @@ const prototypes = projects.filter(
           <ul>
             <li>Private household apps</li>
             <li>Small business workflow tools</li>
+            <li>Health and data dashboards</li>
             <li>Static websites and archives</li>
-            <li>Supabase-backed dashboards</li>
-            <li>Embedded tools for existing websites</li>
+            <li>Embedded website tools</li>
+            <li>AI-assisted app building</li>
           </ul>
         </div>
       </div>
@@ -107,7 +122,8 @@ const prototypes = projects.filter(
       </div>
     </section>
 
-    <section id="projects" class="section section--split">
+    <section id="featured-projects" class="section featured-section">
+      <span id="projects" class="section-anchor" aria-hidden="true"></span>
       <div class="section-heading">
         <p class="eyebrow">Featured projects</p>
         <h2>Portfolio pieces ready to show</h2>
@@ -117,10 +133,124 @@ const prototypes = projects.filter(
         </p>
       </div>
 
-      <ProjectGrid projects={featuredProjects} />
+      <div class="featured-projects-grid">
+        {
+          featuredProjects.map((project) => (
+            <article
+              class={`project-card project-card--${project.theme} featured-project-row`}
+            >
+              <div class="featured-project-row__content">
+                <div class="project-visual" aria-hidden="true">
+                  <span class="project-visual__orb" />
+                  <span class="project-visual__line" />
+                  <span class="project-visual__line project-visual__line--short" />
+                </div>
+
+                <div class="featured-project-row__body">
+                  <div class="project-card__body">
+                    <div class="project-card__top">
+                      <span class="project-category">{project.category}</span>
+                      <span class="project-status">{project.status}</span>
+                    </div>
+
+                    <h3>{project.title}</h3>
+                    <p class="project-type">{project.type}</p>
+                    <p class="project-description">{project.description}</p>
+
+                    <div
+                      class="tech-list"
+                      aria-label={`Technologies used for ${project.title}`}
+                    >
+                      {project.tech.map((item: string) => (
+                        <span>{item}</span>
+                      ))}
+                    </div>
+
+                    <div class="project-actions">
+                      {project.links?.caseStudy && (
+                        <a
+                          class="project-link project-link--primary"
+                          href={project.links.caseStudy}
+                        >
+                          Read case study
+                        </a>
+                      )}
+
+                      {project.links?.live &&
+                        !Array.isArray(project.links.live) && (
+                          <a
+                            class="project-link"
+                            href={project.links.live}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Live site
+                          </a>
+                        )}
+
+                      {project.links?.privateLabel && (
+                        <span
+                          class="project-link project-link--disabled"
+                          aria-disabled="true"
+                        >
+                          {project.links.privateLabel}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {project.slug === "trolley" && (
+                    <div
+                      class="featured-teasers"
+                      aria-label="Trolley screenshot teasers"
+                    >
+                      <div class="featured-teaser featured-teaser--offset">
+                        <img
+                          src="/images/projects/trolley/list.png"
+                          alt="Trolley shopping list screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="featured-teaser">
+                        <img
+                          src="/images/projects/trolley/planner.png"
+                          alt="Trolley meal planner screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {project.slug === "range" && (
+                    <div
+                      class="featured-teasers"
+                      aria-label="Range screenshot teasers"
+                    >
+                      <div class="featured-teaser featured-teaser--offset">
+                        <img
+                          src="/images/projects/range/image2.png"
+                          alt="Range mobile glucose chart screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="featured-teaser">
+                        <img
+                          src="/images/projects/range/image4.png"
+                          alt="Range mobile event history screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </section>
 
-    <section id="apps" class="section section--split">
+    <section id="home-apps" class="section section--split">
       <div class="section-heading">
         <p class="eyebrow">Home apps</p>
         <h2>Private tools for everyday life</h2>
@@ -140,7 +270,7 @@ const prototypes = projects.filter(
       <ProjectGrid projects={websites} />
     </section>
 
-    <section id="extras" class="section section--split">
+    <section id="embedded-tools" class="section section--split">
       <div class="section-heading">
         <p class="eyebrow">Embedded tools</p>
         <h2>Useful extras added to existing sites</h2>
@@ -153,7 +283,7 @@ const prototypes = projects.filter(
       <ProjectGrid projects={embeddedTools} />
     </section>
 
-    <section id="next" class="section section--split next-panel">
+    <section id="next-build" class="section section--split next-panel">
       <div class="section-heading">
         <p class="eyebrow">Next build</p>
         <h2>Church database prototype</h2>

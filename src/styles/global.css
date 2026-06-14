@@ -124,7 +124,8 @@ p {
   gap: 8px;
 }
 
-.site-nav a {
+.site-nav a,
+.nav-dropdown__trigger {
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 850;
@@ -132,9 +133,69 @@ p {
   border-radius: 999px;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.nav-dropdown__trigger:hover,
+.nav-dropdown__trigger:focus-visible,
+.nav-dropdown:focus-within .nav-dropdown__trigger {
   color: #ffffff;
   background: var(--accent);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+}
+
+.nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  z-index: 30;
+  display: grid;
+  min-width: 190px;
+  padding: 10px;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: var(--shadow-small);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+.nav-dropdown:hover .nav-dropdown__menu,
+.nav-dropdown:focus-within .nav-dropdown__menu,
+.nav-dropdown--open .nav-dropdown__menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-dropdown--suppressed .nav-dropdown__menu,
+.nav-dropdown.nav-dropdown--suppressed:hover .nav-dropdown__menu,
+.nav-dropdown.nav-dropdown--suppressed:focus-within .nav-dropdown__menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+.nav-dropdown__menu a {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 14px;
 }
 
 .menu-toggle {
@@ -363,6 +424,13 @@ h3 {
   align-items: start;
 }
 
+.section-anchor {
+  display: block;
+  position: relative;
+  top: -110px;
+  visibility: hidden;
+}
+
 .section-heading {
   max-width: 760px;
   margin-bottom: 26px;
@@ -426,20 +494,21 @@ h3 {
 }
 
 .about-card li {
-  position: relative;
-  padding-left: 22px;
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: start;
   color: var(--muted);
   font-weight: 750;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .about-card li::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
+  display: block;
   width: 9px;
   height: 9px;
+  margin-top: 0.42em;
   border: 2px solid var(--line);
   border-radius: 50%;
   background: var(--accent);
@@ -506,6 +575,69 @@ h3 {
 
 .section--split .project-grid {
   grid-template-columns: 1fr;
+}
+
+.featured-section .section-heading {
+  margin-bottom: 22px;
+}
+
+.featured-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.featured-project-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.5fr);
+  gap: 18px;
+  align-items: stretch;
+  min-height: 0;
+  padding: 18px;
+}
+
+.featured-project-row__content {
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.featured-project-row__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.54fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.featured-teasers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 24px 24px 24px 0;
+  align-self: start;
+  align-items: start;
+}
+
+.featured-teaser {
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: var(--shadow-small);
+}
+
+.featured-teaser--offset {
+  margin-top: 28px;
+}
+
+.featured-teaser img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.88;
 }
 
 .project-card {
@@ -821,11 +953,28 @@ h3 {
 
 .case-overview {
   display: grid;
-  grid-template-columns: minmax(260px, 0.5fr) minmax(0, 1fr);
-  gap: 34px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.case-overview > :first-child {
+  display: grid;
+  gap: 10px;
+  max-width: 920px;
+}
+
+.case-overview > :first-child .eyebrow {
+  margin-bottom: 0;
+}
+
+.case-overview h2 {
+  max-width: 920px;
+  font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+  line-height: 1;
 }
 
 .case-copy {
+  max-width: 920px;
   color: var(--muted);
   font-size: 1.06rem;
   font-weight: 700;
@@ -966,6 +1115,56 @@ h3 {
     border-radius: 999px;
   }
 
+  .nav-dropdown {
+    display: grid;
+    gap: 8px;
+  }
+
+  .nav-dropdown__trigger {
+    justify-content: center;
+    min-height: 44px;
+    color: var(--text);
+    background: var(--panel-soft);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .nav-dropdown__menu {
+    position: static;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    box-shadow: none;
+    display: none;
+  }
+
+  .nav-dropdown:hover .nav-dropdown__menu,
+  .nav-dropdown:focus-within .nav-dropdown__menu,
+  .nav-dropdown--open .nav-dropdown__menu {
+    display: grid;
+  }
+
+  .nav-dropdown__menu a {
+    justify-content: center;
+    min-height: 44px;
+    width: 92%;
+    margin-left: auto;
+    color: var(--text);
+    background: var(--panel-soft);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.82rem;
+  }
+
+  .nav-dropdown__menu a + a {
+    margin-top: 0.4rem;
+  }
+
   .hero,
   .section--split,
   .next-panel,
@@ -992,6 +1191,24 @@ h3 {
 
   .case-hero {
     min-height: auto;
+  }
+
+  .featured-project-row {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .featured-project-row__body {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-teaser--offset {
+    margin-top: 0;
+  }
+
+  .featured-teasers {
+    padding: 0 24px 24px;
+    align-self: stretch;
   }
 }
 
@@ -1043,6 +1260,14 @@ h3 {
   .project-card__top {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .featured-teasers {
+    gap: 10px;
+  }
+
+  .featured-teaser img {
+    height: 220px;
   }
 
   .case-hero h1 {
