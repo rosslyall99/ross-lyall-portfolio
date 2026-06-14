@@ -1,0 +1,416 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="World Cup Predictor Case Study | Ross Lyall Portfolio"
+  description="Case study for World Cup Predictor, a private 2026 World Cup group-stage prediction app."
+>
+  <div class="page-shell">
+    <main>
+      <section class="case-hero case-hero--predictor">
+        <a class="back-link" href="/">← Back to portfolio</a>
+
+        <p class="eyebrow">Case Study / Home App / Private Tool</p>
+        <h1>World Cup Predictor</h1>
+        <p class="case-hero__lead">
+          A private World Cup 2026 group-stage simulator for entering
+          predictions and actual scores, recalculating live tables and using the
+          app from a phone during the tournament.
+        </p>
+
+        <div class="case-meta">
+          <span>React</span>
+          <span>Vite</span>
+          <span>Express</span>
+          <span>SQLite</span>
+          <span>PWA</span>
+          <span>Tailscale</span>
+          <span>Private football prediction app</span>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Screenshots</p>
+          <h2>
+            Private app, built to work properly on a phone during the tournament
+          </h2>
+          <p>
+            These screenshots show the private app in use: group tables,
+            third-place rankings, fixtures and the installed Android PWA view.
+          </p>
+        </div>
+
+        <div class="app-gallery app-gallery--trolley">
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/world-cup-predictor/world-cup-predictor-groups-mobile.png"
+            data-lightbox-alt="World Cup Predictor group tables mobile screenshot"
+          >
+            <img
+              src="/images/projects/world-cup-predictor/world-cup-predictor-groups-mobile.png"
+              alt="World Cup Predictor group tables mobile screenshot"
+              loading="lazy"
+            />
+            <span>Installed App</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/world-cup-predictor/world-cup-predictor-third-place-mobile.png"
+            data-lightbox-alt="World Cup Predictor best third-place teams mobile screenshot"
+          >
+            <img
+              src="/images/projects/world-cup-predictor/world-cup-predictor-third-place-mobile.png"
+              alt="World Cup Predictor best third-place teams mobile screenshot"
+              loading="lazy"
+            />
+            <span>Group Tables</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/world-cup-predictor/world-cup-predictor-fixtures-mobile.png"
+            data-lightbox-alt="World Cup Predictor fixtures mobile screenshot"
+          >
+            <img
+              src="/images/projects/world-cup-predictor/world-cup-predictor-fixtures-mobile.png"
+              alt="World Cup Predictor fixtures mobile screenshot"
+              loading="lazy"
+            />
+            <span>All Fixtures</span>
+          </button>
+
+          <button
+            class="app-gallery__item"
+            type="button"
+            data-lightbox-src="/images/projects/world-cup-predictor/world-cup-predictor-installed-app.png"
+            data-lightbox-alt="World Cup Predictor installed Android app screenshot"
+          >
+            <img
+              src="/images/projects/world-cup-predictor/world-cup-predictor-installed-app.png"
+              alt="World Cup Predictor installed Android app screenshot"
+              loading="lazy"
+            />
+            <span>Third-Place Teams</span>
+          </button>
+        </div>
+
+        <p class="project-type">Private Tailscale app</p>
+
+        <dialog class="image-lightbox" id="world-cup-predictor-lightbox">
+          <button
+            class="image-lightbox__close"
+            type="button"
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img src="" alt="" />
+        </dialog>
+
+        <script>
+          const lightbox = document.querySelector(
+            "#world-cup-predictor-lightbox",
+          ) as HTMLDialogElement | null;
+
+          const lightboxImage = lightbox?.querySelector(
+            "img",
+          ) as HTMLImageElement | null;
+
+          const closeButton = lightbox?.querySelector(
+            ".image-lightbox__close",
+          ) as HTMLButtonElement | null;
+
+          const triggers = document.querySelectorAll<HTMLElement>(
+            "[data-lightbox-src]",
+          );
+
+          triggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+              const src = trigger.dataset.lightboxSrc;
+              const alt = trigger.dataset.lightboxAlt || "";
+
+              if (!lightbox || !lightboxImage || !src) return;
+
+              lightboxImage.src = src;
+              lightboxImage.alt = alt;
+              lightbox.showModal();
+            });
+          });
+
+          closeButton?.addEventListener("click", () => {
+            lightbox?.close();
+          });
+
+          lightbox?.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+              lightbox.close();
+            }
+          });
+        </script>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>
+            Following a World Cup group stage properly means keeping track of a
+            lot more than individual scores.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            This project was built around a real use case: following the 2026
+            World Cup group stage, entering score predictions, then comparing
+            them with actual results as the tournament progresses.
+          </p>
+
+          <p>
+            A simple notes app or spreadsheet can hold scores, but it does not
+            quickly recalculate standings across all 12 groups or keep track of
+            the best third-placed teams in a way that works well on a phone.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">The solution</p>
+          <h2>
+            A private simulator that handles predictions, actual results and
+            tournament table logic in one place.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            World Cup Predictor supports all 12 World Cup groups, lets scores be
+            entered for each match, calculates standings from those scores and
+            tracks the best third-placed teams as the picture changes.
+          </p>
+
+          <p>
+            It was kept private on purpose. Rather than pushing a short-term
+            personal project into a public hosted stack, it runs from an
+            always-on PC using a local Express and SQLite backend, with
+            Tailscale providing secure access from a phone.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key features</p>
+          <h2>What World Cup Predictor does</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>01</span>
+            <h3>All 12 groups</h3>
+            <p>
+              Covers the full 2026 World Cup group stage rather than a small
+              sample dataset or partial simulator.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>02</span>
+            <h3>Score entry</h3>
+            <p>
+              Lets predicted and actual scores be entered match by match, making
+              it easy to move between forecast and reality.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>03</span>
+            <h3>Live standings</h3>
+            <p>
+              Recalculates group tables from entered scores so positions, goal
+              difference and points update immediately.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>04</span>
+            <h3>Third-place ranking</h3>
+            <p>
+              Tracks the best third-placed teams, which is one of the more
+              awkward parts to monitor manually.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>05</span>
+            <h3>Match statuses</h3>
+            <p>
+              Supports Prediction, Actual and Final result states so the app
+              stays useful before, during and after matchdays.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span>06</span>
+            <h3>Phone-first use</h3>
+            <p>
+              Refined for mobile use, backed up with localStorage and installed
+              on Android as a PWA for quick access during the tournament.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Architecture</p>
+          <h2>Built to stay simple, private and easy to run</h2>
+          <p>
+            The technical choices were driven by the project being useful for a
+            single household tournament workflow rather than needing a public
+            SaaS setup.
+          </p>
+        </div>
+
+        <div class="flow-grid">
+          <article class="flow-card">
+            <span>01</span>
+            <h3>React + Vite</h3>
+            <p>
+              The front end handles the score entry screens, group views and
+              mobile-first app layout.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>02</span>
+            <h3>Express server</h3>
+            <p>
+              A local Express app provides a simple backend for storing and
+              updating scores and match states.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>03</span>
+            <h3>SQLite</h3>
+            <p>
+              SQLite keeps the data layer lightweight and practical for a
+              short-term private project.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>04</span>
+            <h3>Always-on PC</h3>
+            <p>
+              The app runs from a home PC that stays available during the
+              tournament rather than relying on external hosting.
+            </p>
+          </article>
+
+          <article class="flow-card">
+            <span>05</span>
+            <h3>Tailscale + PWA</h3>
+            <p>
+              Tailscale Serve provides private HTTPS access, which makes the app
+              installable on Android and usable away from home.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-overview">
+        <div>
+          <p class="eyebrow">Design thinking</p>
+          <h2>
+            The app was shaped by real matchday use rather than by trying to
+            look like a public football product.
+          </h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Mobile use mattered early because this is the sort of tool that gets
+            checked on a sofa, in the garden or while watching a match, not only
+            at a desk. That pushed the layout towards faster taps, clearer
+            states and easier scrolling between groups.
+          </p>
+
+          <p>
+            localStorage backup was added as a practical safety net, and the
+            backend stayed deliberately small because Supabase or a more public
+            deployment would have been unnecessary overhead for this project.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I learned</p>
+          <h2>Useful lessons from building it</h2>
+        </div>
+
+        <div class="lesson-list">
+          <article>
+            <h3>Private infrastructure can be the right answer</h3>
+            <p>
+              For a short-term personal tool, a local Express and SQLite setup
+              was quicker and more sensible than forcing in a heavier hosted
+              stack.
+            </p>
+          </article>
+
+          <article>
+            <h3>Tournament logic needs careful edge-case thinking</h3>
+            <p>
+              Recalculating standings is straightforward in principle, but
+              keeping table and third-place logic reliable across many groups
+              takes care.
+            </p>
+          </article>
+
+          <article>
+            <h3>Phone use changes what matters</h3>
+            <p>
+              The most useful improvements were not visual extras but better tap
+              targets, clearer status handling and a smoother installed-app
+              experience.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section case-next">
+        <div>
+          <p class="eyebrow">Future improvements</p>
+          <h2>Where World Cup Predictor could go next</h2>
+        </div>
+
+        <ul>
+          <li>
+            Add knockout-stage prediction handling after group qualification is
+            settled.
+          </li>
+          <li>
+            Refine tie-break explanations so table movements are easier to
+            follow.
+          </li>
+          <li>
+            Improve backup and restore flows beyond the current localStorage
+            safety net.
+          </li>
+          <li>
+            Add a clearer comparison view between predicted and actual outcomes.
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

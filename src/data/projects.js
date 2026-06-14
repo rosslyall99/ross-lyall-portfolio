@@ -32,6 +32,24 @@ export const projects = [
     },
   },
   {
+    title: "World Cup Predictor",
+    slug: "world-cup-predictor",
+    category: "Home Apps",
+    status: "Live / Active",
+    type: "Private football prediction app",
+    description:
+      "A private World Cup 2026 group-stage simulator for entering predictions and actual scores, calculating live group tables, tracking best third-placed teams and using the app from a phone during the tournament.",
+    tech: ["React", "Vite", "Express", "SQLite", "PWA", "Tailscale"],
+    highlight: true,
+    theme: "predictor",
+    image:
+      "/images/projects/world-cup-predictor/world-cup-predictor-groups-mobile.png",
+    links: {
+      caseStudy: "/projects/world-cup-predictor",
+      privateLabel: "Private Tailscale app",
+    },
+  },
+  {
     title: "Glorious Hearts",
     slug: "glorious-hearts",
     category: "Websites",

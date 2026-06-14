@@ -14,6 +14,7 @@
   --slanj: #f3dfb5;
   --church: #dddff7;
   --roy: #ead8bd;
+  --predictor: #d6ead4;
 
   --shadow-hard: none;
   --shadow-small: none;
@@ -542,6 +543,14 @@ h3 {
   overflow: hidden;
 }
 
+.project-visual__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .project-visual::before {
   content: "";
   position: absolute;
@@ -575,6 +584,19 @@ h3 {
   z-index: 1;
 }
 
+.project-visual:has(.project-visual__image)::before {
+  inset: auto;
+  border: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(20, 20, 20, 0.14) 100%
+  );
+  border-radius: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .project-visual__line--short {
   top: 66px;
   right: 130px;
@@ -605,6 +627,10 @@ h3 {
   background: var(--roy);
 }
 
+.project-card--predictor {
+  background: var(--predictor);
+}
+
 .project-card--trolley .project-visual {
   background: #b9d9a6;
 }
@@ -627,6 +653,10 @@ h3 {
 
 .project-card--roy .project-visual {
   background: #d8b982;
+}
+
+.project-card--predictor .project-visual {
+  background: #9fcca3;
 }
 
 .project-card__top {
@@ -717,6 +747,12 @@ h3 {
 .project-link--primary {
   color: #ffffff;
   background: var(--accent);
+}
+
+.project-link--disabled {
+  cursor: default;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* Next build */
@@ -1144,6 +1180,14 @@ h3 {
 
 .case-hero--slanj {
   background: var(--slanj);
+}
+
+/* ================================
+   World Cup Predictor case study extras
+================================ */
+
+.case-hero--predictor {
+  background: var(--predictor);
 }
 
 /* ================================

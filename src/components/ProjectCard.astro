@@ -12,7 +12,10 @@ const liveLinks: LiveLink[] = Array.isArray(project.links?.live)
     ? [{ label: "Live site", url: project.links.live }]
     : [];
 
-const hasLinks = project.links?.caseStudy || liveLinks.length > 0;
+const hasLinks =
+  project.links?.caseStudy ||
+  liveLinks.length > 0 ||
+  project.links?.privateLabel;
 ---
 
 <article
@@ -21,9 +24,22 @@ const hasLinks = project.links?.caseStudy || liveLinks.length > 0;
   }`}
 >
   <div class="project-visual" aria-hidden="true">
-    <span class="project-visual__orb"></span>
-    <span class="project-visual__line"></span>
-    <span class="project-visual__line project-visual__line--short"></span>
+    {
+      project.image ? (
+        <img
+          class="project-visual__image"
+          src={project.image}
+          alt={`${project.title} screenshot`}
+          loading="lazy"
+        />
+      ) : (
+        <>
+          <span class="project-visual__orb" />
+          <span class="project-visual__line" />
+          <span class="project-visual__line project-visual__line--short" />
+        </>
+      )
+    }
   </div>
 
   <div class="project-card__body">
@@ -65,6 +81,15 @@ const hasLinks = project.links?.caseStudy || liveLinks.length > 0;
               {link.label}
             </a>
           ))}
+
+          {project.links?.privateLabel && (
+            <span
+              class="project-link project-link--disabled"
+              aria-disabled="true"
+            >
+              {project.links.privateLabel}
+            </span>
+          )}
         </div>
       )
     }
