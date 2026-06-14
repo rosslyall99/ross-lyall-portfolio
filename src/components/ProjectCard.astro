@@ -24,22 +24,9 @@ const hasLinks =
   }`}
 >
   <div class="project-visual" aria-hidden="true">
-    {
-      project.image ? (
-        <img
-          class="project-visual__image"
-          src={project.image}
-          alt={`${project.title} screenshot`}
-          loading="lazy"
-        />
-      ) : (
-        <>
-          <span class="project-visual__orb" />
-          <span class="project-visual__line" />
-          <span class="project-visual__line project-visual__line--short" />
-        </>
-      )
-    }
+    <span class="project-visual__orb"></span>
+    <span class="project-visual__line"></span>
+    <span class="project-visual__line project-visual__line--short"></span>
   </div>
 
   <div class="project-card__body">

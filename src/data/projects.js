@@ -42,8 +42,6 @@ export const projects = [
     tech: ["React", "Vite", "Express", "SQLite", "PWA", "Tailscale"],
     highlight: true,
     theme: "predictor",
-    image:
-      "/images/projects/world-cup-predictor/world-cup-predictor-groups-mobile.png",
     links: {
       caseStudy: "/projects/world-cup-predictor",
       privateLabel: "Private Tailscale app",
